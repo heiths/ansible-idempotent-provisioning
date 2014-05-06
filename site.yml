@@ -9,7 +9,7 @@
                  name=mykey region=IAD
                  public_key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
-  - name: provision the server
+  - name: provision the server(s)
     rax: credentials=~/.rackspace_cloud_credentials name=foo
          exact_count=yes count=2 group=only
          image=ubuntu-1204-lts-precise-pangolin
