@@ -4,6 +4,11 @@
   connection: local
   tasks:
 
+  - name: ensure the keypair is present
+    rax_keypair: credentials=~/.rackspace_cloud_credentials
+                 name=mykey region=IAD
+                 public_key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
   - name: provision the server
     rax: credentials=~/.rackspace_cloud_credentials name=foo
          exact_count=yes count=2 group=only
@@ -12,7 +17,7 @@
          region=IAD
          state=present
          wait=yes
-         key_name=tiger
+         key_name=mykey
     register: rax
 
   - name: add hosts to groups
