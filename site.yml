@@ -27,7 +27,8 @@
     when: rax.action == 'create'
 
   - name: wait for new servers to launch
-    wait_for: host={{ item.rax_accessipv4 }} port=22 state=started
+    wait_for: host={{ item.rax_accessipv4 }} port=22
+              delay=2 state=started
     with_items: rax.success
     when: rax.action == 'create'
 
